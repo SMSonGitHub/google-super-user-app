@@ -31,6 +31,39 @@
       <my-view404 name="view404"></my-view404>
     </iron-pages>
   </app-header-layout>
+  <app-box>
+  
+    <!-- Main content -->
+    <app-header-layout has-scrolling-region>
+  
+      <app-header slot="header" condenses reveals effects="waterfall">
+        <app-toolbar>
+          <div main-title>Google Search Administrator</div>
+        </app-toolbar>
+      </app-header>
+  
+      <div class="card">
+        <app-toolbar>Set View:</app-toolbar>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <!-- <a name="view1" href="[[rootPath]]view1">View One</a> -->
+          <a name="thomas-view" href="[[rootPath]]thomas-view">Test Thomas View</a> 
+          <a name="sabien-view" href="[[rootPath]]sabien-view">Test Sabien View</a> 
+          <a name="view3" href="[[rootPath]]view3">Google Search Handler</a>
+        </iron-selector>
+      </div>
+
+      <iron-pages
+          selected="[[page]]"
+          attr-for-selected="name"
+          fallback-selection="view404"
+          role="main">
+        <thomas-view name="thomas-view"></thomas-view>
+        <sabien-view name="sabien-view"></sabien-view>
+        <my-view3 name="view3" route="{{subroute}}"></my-view3>
+        <my-view404 name="view404"></my-view404>
+      </iron-pages>
+    </app-header-layout>
+  </app-box>
 
 <!--  <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
       <a name="view1" href="[[rootPath]]view1">View One</a>

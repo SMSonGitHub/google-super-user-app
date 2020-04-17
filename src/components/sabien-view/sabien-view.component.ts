@@ -1,21 +1,14 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element';
-import '@polymer/app-route/app-location';
-import '@polymer/app-route/app-route';
-import '@polymer/iron-pages/iron-pages';
-import '@polymer/iron-selector/iron-selector';
-import '@polymer/paper-input/paper-input';
-import '@polymer/paper-button/paper-button';
 
-import view from './view3.template.html';
-import style from './view3.style.scss';
+import view from './sabien-view.template.html';
+import style from './sabien-view.style.scss';
 import '../shared-styles';
-import '../icons';
 
-export class MyView3 extends PolymerElement {
+export class SabienView extends PolymerElement {
   $: any;
 
   static get is() {
-    return 'my-view3';
+    return 'sabien-view';
   }
 
   static get template() {
@@ -31,8 +24,8 @@ export class MyView3 extends PolymerElement {
       },
       route: Object,
       routeData: Object,
-      subroute: Object,
       dynamicPath: String,
+      googleRoot: String
     };
   }
 
@@ -50,8 +43,8 @@ export class MyView3 extends PolymerElement {
     if (route !== 'view3') {
       return;
     }
-    this.page = subroute ? 'dynamic-subview' : 'index';
-    this.dynamicPath = subroute || '';
+   
+    this.dynamicPath = '';
   }
 
   _pageChanged(page: string) {
@@ -65,6 +58,11 @@ export class MyView3 extends PolymerElement {
   _showPage404() {
     this.page = 'index';
   }
-}
 
-window.customElements.define(MyView3.is, MyView3);
+  _insertSiteOperator() {
+    if (!this.dynamicPath.includes('site:')) {
+      this.dynamicPath = 'site:www.stackoverflow.com ' + this.dynamicPath;
+    }
+  }
+}
+window.customElements.define(SabienView.is, SabienView);
